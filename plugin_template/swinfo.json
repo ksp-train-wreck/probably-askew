@@ -1,0 +1,23 @@
+{
+  "spec": "2.0",
+  "mod_id": "ProbablyAskew",
+  "author": "Alex Sherwin",
+  "name": "ProbablyAskew",
+  "description": "Trying to get less askew",
+  "source": "https://github.com/ksp-train-wreck/probably-askew",
+  "version": "0.1.0",
+  "version_check": "https://raw.githubusercontent.com/ksp-train-wreck/probably-askew/main/plugin_template/swinfo.json",
+  "ksp2_version": {
+    "min": "0.2.0",
+    "max": "*"
+  },
+  "dependencies": [
+    {
+      "id": "com.github.x606.spacewarp",
+      "version": {
+        "min": "1.7.0",
+        "max": "*"
+      }
+    }
+  ]
+}

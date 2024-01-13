@@ -1,0 +1,34 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{37F2E4B0-EC50-4B42-A39A-41B1C969180D}") = "ProbablyAskew", "src/ProbablyAskew/ProbablyAskew.csproj", "{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}"
+EndProject
+Project("{37F2E4B0-EC50-4B42-A39A-41B1C969180D}") = "ProbablyAskew.Unity", "src/ProbablyAskew.Unity/ProbablyAskew.Unity.csproj", "{8E29324D-FA58-494F-8208-673819B59687}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Deploy|Any CPU = Deploy|Any CPU
+		DeployAndRun|Any CPU = DeployAndRun|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{3BF4FC87-C8FC-4755-8E4F-161FCBB928C4}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{8E29324D-FA58-494F-8208-673819B59687}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+	EndGlobalSection
+EndGlobal
+
+
