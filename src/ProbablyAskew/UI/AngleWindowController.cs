@@ -61,17 +61,24 @@ public class AngleWindowController : MonoBehaviour
     {
         
         Logger.LogWarning("Angle window OnEnable");
-        
-        // Get the UIDocument component from the game object
-        _window = GetComponent<UIDocument>();
+        try
+        {
 
-        // Get the root element of the window.
-        // Since we're cloning the UXML tree from a VisualTreeAsset, the actual root element is a TemplateContainer,
-        // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
-        _rootElement = _window.rootVisualElement[0];
+            // Get the UIDocument component from the game object
+            _window = GetComponent<UIDocument>();
 
-        // Center the window by default
-        _rootElement.CenterByDefault();
+            // Get the root element of the window.
+            // Since we're cloning the UXML tree from a VisualTreeAsset, the actual root element is a TemplateContainer,
+            // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
+            _rootElement = _window.rootVisualElement[0];
+
+            // Center the window by default
+            _rootElement.CenterByDefault();
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e);
+        }
 
     }
 

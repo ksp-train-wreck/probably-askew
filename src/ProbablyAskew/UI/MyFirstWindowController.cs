@@ -80,50 +80,62 @@ public class MyFirstWindowController : MonoBehaviour
         _showToggle.RegisterCallback<ChangeEvent<bool>>((evt) =>
         {
             Logger.LogWarning($"Toggle Clicked, new value: {evt.newValue}");
-            if (evt.newValue)
+            try
             {
-                
-                
-                // Load the UI from the asset bundle
-                var angleWindowUxml = AssetManager.GetAsset<VisualTreeAsset>(
-                    // The case-insensitive path to the asset in the bundle is composed of:
-                    // - The mod GUID:
-                    $"{MyPluginInfo.PLUGIN_GUID}/" +
-                    // - The name of the asset bundle:
-                    "ProbablyAskew_ui/" +
-                    // - The path to the asset in your Unity project (without the "Assets/" part)
-                    "ui/myfirstwindow/AngleWindow.uxml"
-                );
-
-                
-                var windowOptions = new WindowOptions
+                if (evt.newValue)
                 {
-                    // The ID of the window. It should be unique to your mod.
-                    WindowId = "ProbablyAskew_AngleWindow",
-                    // The transform of parent game object of the window.
-                    // If null, it will be created under the main canvas.
-                    Parent = null,
-                    // Whether or not the window can be hidden with F2.
-                    IsHidingEnabled = true,
-                    // Whether to disable game input when typing into text fields.
-                    DisableGameInputForTextFields = true,
-                    MoveOptions = new MoveOptions
-                    {
-                        // Whether or not the window can be moved by dragging.
-                        IsMovingEnabled = true,
-                        // Whether or not the window can only be moved within the screen bounds.
-                        CheckScreenBounds = true
-                    }
-                };
-                
-                var angleWindow = Window.Create(windowOptions, angleWindowUxml);
-        
-                // Add a controller for the UI to the window's game object
-                _angleWindowController = angleWindow.gameObject.AddComponent<AngleWindowController>();
 
-                _angleWindowController.IsWindowOpen = true;
+
+                    // Load the UI from the asset bundle
+                    var angleWindowUxml = AssetManager.GetAsset<VisualTreeAsset>(
+                        // The case-insensitive path to the asset in the bundle is composed of:
+                        // - The mod GUID:
+                        $"{MyPluginInfo.PLUGIN_GUID}/" +
+                        // - The name of the asset bundle:
+                        "ProbablyAskew_ui/" +
+                        // - The path to the asset in your Unity project (without the "Assets/" part)
+                        "ui/myfirstwindow/AngleWindow.uxml"
+                    );
+
+                    
+
+                    var windowOptions = new WindowOptions
+                    {
+                        // The ID of the window. It should be unique to your mod.
+                        WindowId = "ProbablyAskew_AngleWindow",
+                        // The transform of parent game object of the window.
+                        // If null, it will be created under the main canvas.
+                        Parent = null,
+                        // Whether or not the window can be hidden with F2.
+                        IsHidingEnabled = true,
+                        // Whether to disable game input when typing into text fields.
+                        DisableGameInputForTextFields = true,
+                        MoveOptions = new MoveOptions
+                        {
+                            // Whether or not the window can be moved by dragging.
+                            IsMovingEnabled = true,
+                            // Whether or not the window can only be moved within the screen bounds.
+                            CheckScreenBounds = true
+                        }
+                    };
+
+                    var angleWindow = Window.Create(windowOptions, angleWindowUxml);
+                    
+                    // angleWindow.RegisterCallback<MouseDownEvent>(e => e.StopImmediatePropagation(), TrickleDown.TrickleDown);
+                    
+
+                    // Add a controller for the UI to the window's game object
+                    _angleWindowController = angleWindow.gameObject.AddComponent<AngleWindowController>();
+
+                    _angleWindowController.IsWindowOpen = true;
+                }
             }
-        });
+            catch (Exception e)
+            {
+                Logger.LogError(e);
+            }
+        
+    });
 
         
         
