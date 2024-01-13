@@ -75,6 +75,7 @@ public class ProbablyAskewPlugin : BaseSpaceWarpPlugin
 
         // Create the window
         var myFirstWindow = Window.Create(windowOptions, myFirstWindowUxml);
+        
         // Add a controller for the UI to the window's game object
         var myFirstWindowController = myFirstWindow.gameObject.AddComponent<MyFirstWindowController>();
 

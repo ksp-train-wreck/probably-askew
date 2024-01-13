@@ -1,5 +1,7 @@
+using BepInEx.Logging;
 using KSP.UI.Binding;
 using ProbablyAskew.Unity.Runtime;
+using SpaceWarp.API.Assets;
 using UitkForKsp2.API;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,17 +13,22 @@ namespace ProbablyAskew.UI;
 /// </summary>
 public class MyFirstWindowController : MonoBehaviour
 {
+    
+    private static ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("ProbablyAskew.Window");
+
+    
     // The UIDocument component of the window game object
     private UIDocument _window;
 
     // The elements of the window that we need to access
     private VisualElement _rootElement;
-    private TextField _nameTextfield;
-    private Toggle _noonToggle;
-    private Label _greetingLabel;
+    private TextField _angleTextfield;
+    private Toggle _showToggle;
 
     // The backing field for the IsWindowOpen property
     private bool _isWindowOpen;
+
+    private AngleWindowController _angleWindowController;
 
     /// <summary>
     /// The state of the window. Setting this value will open or close the window.
@@ -66,12 +73,60 @@ public class MyFirstWindowController : MonoBehaviour
         _rootElement = _window.rootVisualElement[0];
 
         // Get the text field from the window
-        _nameTextfield = _rootElement.Q<TextField>("name-textfield");
+        _angleTextfield = _rootElement.Q<TextField>("angle-textfield");
         // Get the toggle from the window
-        _noonToggle = _rootElement.Q<Toggle>("noon-toggle");
-        // Get the greeting label from the window
-        _greetingLabel = _rootElement.Q<Label>("greeting-label");
+        _showToggle = _rootElement.Q<Toggle>("show-toggle");
 
+        _showToggle.RegisterCallback<ChangeEvent<bool>>((evt) =>
+        {
+            Logger.LogWarning($"Toggle Clicked, new value: {evt.newValue}");
+            if (evt.newValue)
+            {
+                
+                
+                // Load the UI from the asset bundle
+                var angleWindowUxml = AssetManager.GetAsset<VisualTreeAsset>(
+                    // The case-insensitive path to the asset in the bundle is composed of:
+                    // - The mod GUID:
+                    $"{MyPluginInfo.PLUGIN_GUID}/" +
+                    // - The name of the asset bundle:
+                    "ProbablyAskew_ui/" +
+                    // - The path to the asset in your Unity project (without the "Assets/" part)
+                    "ui/myfirstwindow/AngleWindow.uxml"
+                );
+
+                
+                var windowOptions = new WindowOptions
+                {
+                    // The ID of the window. It should be unique to your mod.
+                    WindowId = "ProbablyAskew_AngleWindow",
+                    // The transform of parent game object of the window.
+                    // If null, it will be created under the main canvas.
+                    Parent = null,
+                    // Whether or not the window can be hidden with F2.
+                    IsHidingEnabled = true,
+                    // Whether to disable game input when typing into text fields.
+                    DisableGameInputForTextFields = true,
+                    MoveOptions = new MoveOptions
+                    {
+                        // Whether or not the window can be moved by dragging.
+                        IsMovingEnabled = true,
+                        // Whether or not the window can only be moved within the screen bounds.
+                        CheckScreenBounds = true
+                    }
+                };
+                
+                var angleWindow = Window.Create(windowOptions, angleWindowUxml);
+        
+                // Add a controller for the UI to the window's game object
+                _angleWindowController = angleWindow.gameObject.AddComponent<AngleWindowController>();
+
+                _angleWindowController.IsWindowOpen = true;
+            }
+        });
+
+        
+        
         // Center the window by default
         _rootElement.CenterByDefault();
 
@@ -80,25 +135,21 @@ public class MyFirstWindowController : MonoBehaviour
         // Add a click event handler to the close button
         closeButton.clicked += () => IsWindowOpen = false;
 
-        // Get the "Say hello!" button from the window
-        var sayHelloButton = _rootElement.Q<Button>("say-hello-button");
-        // Add a click event handler to the button
-        sayHelloButton.clicked += SayHelloButtonClicked;
     }
 
     private void SayHelloButtonClicked()
     {
-        // Get the value of the text field
-        var playerName = _nameTextfield.value;
-        // Get the value of the toggle
-        var isAfternoon = _noonToggle.value;
-
-        // Get the greeting for the player from the example script in our Unity project assembly we loaded earlier
-        var greeting = ExampleScript.GetGreeting(playerName, isAfternoon);
-
-        // Set the text of the greeting label
-        _greetingLabel.text = greeting;
-        // Make the greeting label visible
-        _greetingLabel.style.display = DisplayStyle.Flex;
+        // // Get the value of the text field
+        // var playerName = _angleTextfield.value;
+        // // Get the value of the toggle
+        // var isAfternoon = _showToggle.value;
+        //
+        // // Get the greeting for the player from the example script in our Unity project assembly we loaded earlier
+        // var greeting = ExampleScript.GetGreeting(playerName, isAfternoon);
+        //
+        // // Set the text of the greeting label
+        // _greetingLabel.text = greeting;
+        // // Make the greeting label visible
+        // _greetingLabel.style.display = DisplayStyle.Flex;
     }
 }
