@@ -6,7 +6,7 @@
             <ui:Button text="×" name="close-button" />
         </ui:VisualElement>
         <ui:VisualElement name="content">
-            <ui:TextField picking-mode="Ignore" label="Angle" name="angle-textfield" />
+            <ui:TextField picking-mode="Ignore" label="Angle" name="angle-textfield" value="0" />
             <ui:Toggle label="Toggle" name="show-toggle" class="toggle" style="margin-top: 10px;" />
         </ui:VisualElement>
     </ui:VisualElement>

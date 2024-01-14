@@ -1,7 +1,4 @@
 using BepInEx.Logging;
-using KSP.UI.Binding;
-using ProbablyAskew.Unity.Runtime;
-using SpaceWarp.API.Assets;
 using UitkForKsp2.API;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -21,9 +18,13 @@ public class AngleWindowController : MonoBehaviour
 
     // The elements of the window that we need to access
     private VisualElement _rootElement;
+    private VisualElement _lineParent;
 
     // The backing field for the IsWindowOpen property
     private bool _isWindowOpen;
+
+    // private VisualElement _line;
+    private float _angle = 0;
 
     /// <summary>
     /// The state of the window. Setting this value will open or close the window.
@@ -37,20 +38,7 @@ public class AngleWindowController : MonoBehaviour
 
             // Set the display style of the root element to show or hide the window
             _rootElement.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
-            // Alternatively, you can deactivate the window game object to close the window and stop it from updating,
-            // which is useful if you perform expensive operations in the window update loop. However, this will also
-            // mean you will have to re-register any event handlers on the window elements when re-enabled in OnEnable.
-            // gameObject.SetActive(value);
-
-            // Update the Flight AppBar button state
-            // GameObject.Find(ProbablyAskewPlugin.ToolbarFlightButtonID)
-            //     ?.GetComponent<UIValue_WriteBool_Toggle>()
-            //     ?.SetValue(value);
-            //
-            // // Update the OAB AppBar button state
-            // GameObject.Find(ProbablyAskewPlugin.ToolbarOabButtonID)
-            //     ?.GetComponent<UIValue_WriteBool_Toggle>()
-            //     ?.SetValue(value);
+            
         }
     }
 
@@ -71,8 +59,16 @@ public class AngleWindowController : MonoBehaviour
             // Since we're cloning the UXML tree from a VisualTreeAsset, the actual root element is a TemplateContainer,
             // so we need to get the first child of the TemplateContainer to get our actual root VisualElement.
             _rootElement = _window.rootVisualElement[0];
+            
+            // _rootElement.style.width = new StyleLength(Length.(100));
+            _rootElement.style.width = 500;
+            _rootElement.style.height = 500;
+            
+            
+            _lineParent = _rootElement.Q<VisualElement>("line-parent");
 
             // Center the window by default
+            Logger.LogWarning("centering overlay");
             _rootElement.CenterByDefault();
         }
         catch (Exception e)
@@ -81,5 +77,26 @@ public class AngleWindowController : MonoBehaviour
         }
 
     }
+
+    public void SetAngle(float angle)
+    {
+        try
+        {
+            // Rotate the line
+            // Logger.LogInfo("Setting angle to {angle}");
+            
+            _angle = (angle - 90) * -1;
+            _lineParent.transform.rotation = Quaternion.Euler(0, 0, _angle);
+            
+            Logger.LogWarning("centering during set angle");
+            _rootElement.CenterByDefault();
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e);
+        }
+
+    }
+
 
 }
