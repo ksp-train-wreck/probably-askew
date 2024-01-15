@@ -22,6 +22,12 @@ public class MyFirstWindowController : MonoBehaviour
     private VisualElement _rootElement;
     private TextField _angleTextfield;
     private Toggle _showToggle;
+    private SliderInt _sizeSlider;
+
+    private TextField _lineColorTextfield;
+    private TextField _crossColorTextfield;
+    private TextField _circleColorTextfield;
+    private SliderInt _opacitySlider;
 
     // The backing field for the IsWindowOpen property
     private bool _isWindowOpen;
@@ -51,9 +57,19 @@ public class MyFirstWindowController : MonoBehaviour
                 ?.SetValue(value);
 
             // Update the OAB AppBar button state
-            // GameObject.Find(ProbablyAskewPlugin.ToolbarOabButtonID)
-            //     ?.GetComponent<UIValue_WriteBool_Toggle>()
-            //     ?.SetValue(value);
+            GameObject.Find(ProbablyAskewPlugin.ToolbarOabButtonID)
+                ?.GetComponent<UIValue_WriteBool_Toggle>()
+                ?.SetValue(value);
+
+            if (value && null != _showToggle && _showToggle.value)
+            {
+                _angleWindowController.IsWindowOpen = true;
+            }
+            else
+            {
+                _angleWindowController.IsWindowOpen = false;
+            }
+            
         }
     }
 
@@ -77,6 +93,7 @@ public class MyFirstWindowController : MonoBehaviour
 
             createAngleWindow();
 
+
             // Get the text field from the window
             _angleTextfield = _rootElement.Q<TextField>("angle-textfield");
 
@@ -94,8 +111,39 @@ public class MyFirstWindowController : MonoBehaviour
             });
 
 
+            _sizeSlider = _rootElement.Q<SliderInt>("size-slider");
+            _sizeSlider.highValue = 1000;
+            
+            _sizeSlider.RegisterValueChangedCallback(evt =>
             {
-            }
+                _angleWindowController.SetSize(evt.newValue);
+            });
+            
+            
+            _opacitySlider = _rootElement.Q<SliderInt>("opacity-slider");
+            _opacitySlider.RegisterValueChangedCallback(evt =>
+            {
+                _angleWindowController.SetOpacity(evt.newValue);
+            });
+            
+            _circleColorTextfield = _rootElement.Q<TextField>("circle-hex-color");
+            _circleColorTextfield.RegisterValueChangedCallback(evt =>
+            {
+                _angleWindowController.SetCircleColor(evt.newValue);
+            });
+            
+            _crossColorTextfield = _rootElement.Q<TextField>("cross-hex-color");
+            _crossColorTextfield.RegisterValueChangedCallback(evt =>
+            {
+                _angleWindowController.SetCrossColor(evt.newValue);
+            });
+            
+            _lineColorTextfield = _rootElement.Q<TextField>("line-hex-color");
+            _lineColorTextfield.RegisterValueChangedCallback(evt =>
+            {
+                _angleWindowController.SetLineColor(evt.newValue);
+            });
+
 
 
             // Get the toggle from the window
@@ -116,7 +164,7 @@ public class MyFirstWindowController : MonoBehaviour
                 }
             });
 
-            Logger.LogInfo("Centering...");
+            // Logger.LogInfo("Centering...");
             // Center the window by default
             _rootElement.CenterByDefault();
 
@@ -124,6 +172,8 @@ public class MyFirstWindowController : MonoBehaviour
             var closeButton = _rootElement.Q<Button>("close-button");
             // Add a click event handler to the close button
             closeButton.clicked += () => IsWindowOpen = false;
+
+            // StartCoroutine(CheckScalingAndSetMaxHeight());
         }
         catch (Exception e)
         {
@@ -173,5 +223,37 @@ public class MyFirstWindowController : MonoBehaviour
         // Add a controller for the UI to the window's game object
         _angleWindowController = angleWindow.gameObject.AddComponent<AngleWindowController>();
         _angleWindowController.SetAngle(0);
+        _angleWindowController.IsWindowOpen = false;
+    }
+
+    private System.Collections.IEnumerator CheckScalingAndSetMaxHeight()
+    {
+        // Wait until the next frame
+        yield return null;
+
+        // if (null != _angleWindowController)
+        // {
+        //     var angleRootElement = _angleWindowController.getRootElement();
+        //
+        //     if (null != angleRootElement)
+        //     {
+        //
+        //         
+        //         var heightRatio = 500 / angleRootElement.resolvedStyle.height;
+        //         Logger.LogInfo($"heightRatio: {heightRatio}, angleRootElement.resolvedStyle.height: {angleRootElement.resolvedStyle.height}, angleRootElement.style.height: {angleRootElement.style.height}");
+        //
+        //         if (null != _sizeSlider)
+        //         {
+        //
+        //             var maxHeight = (int) Math.Floor(heightRatio * Screen.height);
+        //             Logger.LogInfo($"calculated maxHeight: {maxHeight}");
+        //             _sizeSlider.highValue = maxHeight;
+        //         }
+        //
+        //     }
+        //     
+        // }
+        
+
     }
 }

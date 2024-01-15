@@ -87,6 +87,8 @@ public class ProbablyAskewPlugin : BaseSpaceWarpPlugin
             isOpen => myFirstWindowController.IsWindowOpen = isOpen
         );
 
+        myFirstWindowController.IsWindowOpen = false;
+
         // Register OAB AppBar Button
         Appbar.RegisterOABAppButton(
             ModName,
@@ -96,12 +98,12 @@ public class ProbablyAskewPlugin : BaseSpaceWarpPlugin
         );
 
         // Register KSC AppBar Button
-        Appbar.RegisterKSCAppButton(
-            ModName,
-            ToolbarKscButtonID,
-            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
-            () => myFirstWindowController.IsWindowOpen = !myFirstWindowController.IsWindowOpen
-        );
+        // Appbar.RegisterKSCAppButton(
+        //     ModName,
+        //     ToolbarKscButtonID,
+        //     AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
+        //     () => myFirstWindowController.IsWindowOpen = !myFirstWindowController.IsWindowOpen
+        // );
     }
 
     /// <summary>

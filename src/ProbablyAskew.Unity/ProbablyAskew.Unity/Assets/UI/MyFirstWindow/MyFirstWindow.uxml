@@ -1,13 +1,18 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/MyFirstWindow/MyFirstWindow.uss?fileID=7433441132597879392&amp;guid=f49119c0dc6aec7469a0374f7f606ceb&amp;type=3#MyFirstWindow" />
-    <ui:VisualElement class="root" style="height: 150px; width: 300px;">
-        <ui:VisualElement name="title-bar">
-            <ui:Label text="ProbablyAskew" />
-            <ui:Button text="×" name="close-button" />
+    <ui:VisualElement class="root" style="height: 300px; width: 300px; padding-left: 6px; padding-right: 6px; padding-top: 2px; padding-bottom: 2px;">
+        <ui:VisualElement name="title-bar" style="margin-bottom: 8px;">
+            <ui:Label text="Probably Askew" style="-unity-font-definition: url(&apos;project://database/Packages/uitkforksp2.controls/Assets/Theme/Fonts/JetBrainsMono/JetBrainsMono-Regular%20SDF.asset?fileID=11400000&amp;guid=f5454c9c675002c44a5a7234bd40c390&amp;type=2#JetBrainsMono-Regular SDF&apos;); font-size: 16px;" />
+            <ui:Button text="×" name="close-button" style="font-size: 20px; padding-left: 6px; padding-right: 6px; padding-top: 6px; padding-bottom: 6px; margin-right: 0; width: 22px; height: 22px;" />
         </ui:VisualElement>
         <ui:VisualElement name="content">
-            <ui:TextField picking-mode="Ignore" label="Angle" name="angle-textfield" value="0" />
-            <ui:Toggle label="Toggle" name="show-toggle" class="toggle" style="margin-top: 10px;" />
+            <ui:TextField picking-mode="Ignore" label="Angle" name="angle-textfield" value="0" style="padding-top: 0; padding-bottom: 0; padding-left: 0; padding-right: 0; margin-top: 2px; margin-bottom: 2px;" />
+            <ui:Toggle label="Toggle" name="show-toggle" class="toggle" style="margin-top: 2px; margin-bottom: 2px;" />
+            <ui:SliderInt picking-mode="Ignore" label="Size" value="500" high-value="1000" name="size-slider" focusable="false" low-value="200" page-size="10" show-input-field="false" />
+            <ui:SliderInt picking-mode="Ignore" label="Opacity" value="75" high-value="100" name="opacity-slider" page-size="1" />
+            <ui:TextField picking-mode="Ignore" label="Circle Hex Color" value="#ff00ee" name="circle-hex-color" style="margin-top: 2px; margin-bottom: 2px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+            <ui:TextField picking-mode="Ignore" label="Cross Hex Color" value="#ff00ee" name="cross-hex-color" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-top: 2px; margin-bottom: 2px;" />
+            <ui:TextField picking-mode="Ignore" label="Line Hex Color" value="#38ff38" name="line-hex-color" style="margin-top: 2px; margin-bottom: 2px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

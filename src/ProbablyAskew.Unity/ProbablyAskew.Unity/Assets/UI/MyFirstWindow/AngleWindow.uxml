@@ -1,16 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement name="root" picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); width: 500px; height: 500px; flex-grow: initial;">
-        <ui:VisualElement picking-mode="Ignore" name="circle" style="background-color: rgba(0, 0, 0, 0); -unity-background-image-tint-color: rgba(0, 0, 255, 0.2); border-left-color: rgba(0, 0, 255, 0.5); border-right-color: rgba(0, 0, 255, 0.5); border-top-color: rgba(0, 0, 255, 0.5); border-bottom-color: rgba(0, 0, 255, 0.5); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-top-left-radius: 50%; border-bottom-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
+        <ui:VisualElement name="crosshair-east-west-parent" picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); left: 0; top: 0; right: 0; bottom: 0; flex-direction: row; align-items: center; justify-content: center; position: absolute;">
+            <ui:VisualElement name="east-west" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(255, 0, 238, 0.31); height: 2px;" />
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" name="crosshair-north-south-parent" style="background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center;">
+            <ui:VisualElement name="north-south" picking-mode="Ignore" style="background-color: rgba(255, 0, 238, 0.31); width: 2px; flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" name="circle" style="background-color: rgba(0, 0, 0, 0); border-left-color: rgba(255, 0, 238, 0.31); border-right-color: rgba(255, 0, 238, 0.31); border-top-color: rgba(255, 0, 238, 0.31); border-bottom-color: rgba(255, 0, 238, 0.31); border-left-width: 2px; border-right-width: 2px; border-top-width: 2px; border-bottom-width: 2px; border-top-left-radius: 50%; border-bottom-left-radius: 50%; border-top-right-radius: 50%; border-bottom-right-radius: 50%; position: absolute; left: 20px; top: 20px; right: 20px; bottom: 20px;">
             <ui:VisualElement name="line-parent" picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); height: 2px; width: 100%; position: absolute; top: 50%; margin-top: -1px; flex-direction: row;">
                 <ui:VisualElement name="line" style="flex-grow: 1; background-color: rgba(56, 255, 56, 0.78);" />
                 <ui:VisualElement name="invisible-line" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
             </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement picking-mode="Ignore" name="crosshair-north-south-parent" style="background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; align-items: center;">
-            <ui:VisualElement name="north-south" picking-mode="Ignore" style="background-color: rgba(255, 0, 238, 0.2); width: 2px; flex-grow: 1;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="crosshair-east-west-parent" picking-mode="Ignore" style="background-color: rgba(0, 0, 0, 0); left: 0; top: 0; right: 0; bottom: 0; flex-direction: row; align-items: center; justify-content: center; position: absolute;">
-            <ui:VisualElement name="east-west" picking-mode="Ignore" style="flex-grow: 1; background-color: rgba(255, 0, 238, 0.2); height: 2px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
